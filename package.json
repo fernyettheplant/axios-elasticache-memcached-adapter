@@ -1,6 +1,6 @@
 {
-  "name": "axios-memcached-elasticache-interceptor",
-  "version": "1.0.0",
+  "name": "axios-memcached-elasticache-adapter",
+  "version": "1.0.1",
   "description": "Cache adapter for axios using memcached elasticcache",
   "main": "index.js",
   "keywords": [
