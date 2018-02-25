@@ -1,14 +1,14 @@
 {
   "name": "axios-memcached-elasticache-adapter",
   "version": "1.0.1",
-  "description": "Cache adapter for axios using memcached elasticcache",
+  "description": "Cache adapter for axios using memcached elasticache",
   "main": "index.js",
   "keywords": [
     "axios",
     "adapter",
     "memcached",
     "caching",
-    "elasticcache"
+    "elasticache"
   ],
   "author": "Jesus Fernando Alvarez Franco <jefer_590@hotmail.com>",
   "license": "MIT",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jefer590/axios-memcached-elasticcache-adapter"
+    "url": "https://github.com/jefer590/axios-memcached-elasticache-adapter"
   },
   "engineStrict": true,
   "dependencies": {
