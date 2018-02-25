@@ -21,7 +21,6 @@
   },
   "engineStrict": true,
   "dependencies": {
-    "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "circular-json": "^0.5.1",
     "memcached-elasticache": "^1.1.1"

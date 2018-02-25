@@ -15,11 +15,9 @@ function setup (adapter, serverLocations, ttl = 60, options = {}) {
       try {
         response = await memcached.getAsync(url)
         if (!response) {
-          console.log('Not In Cache')
           response = await adapter(req)
           await memcached.setAsync(url, CircularJSON.stringify(response), ttl)
         } else {
-          console.log('In Cache')
           response = CircularJSON.parse(response)
         }
       } catch (exception) {
