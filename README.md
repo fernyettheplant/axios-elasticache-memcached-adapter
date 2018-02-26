@@ -26,14 +26,16 @@ The library setup takes four parameters
 
 - `adapter`: the default axios adapter. See usage to have more info.
 - `serverLocations`: Server Location of memcached cluster. Check [Server Locations documentation](https://github.com/3rd-Eden/memcached#server-locations) from the memcached library.
-- `ttl`: Cache Time-to-Live in seconds. Default value is 60 seconds.
+- `ttl`: Cache Time-to-Live in seconds. Default value is 100 seconds.
+- `salt`: Salt Suffix for the memcached key. Default is empty string `''`
 - `options`: Options object with the memcached client params. Check the [client options documentation](https://github.com/3rd-Eden/memcached#options) from the memcached library.
 
 ## Usage
 
 To use this library, you need to setup the memcached options to create the adapter function and then attach it to the axios instance.
 
-``` javascript
+```javascript
+const axios = require('axios')
 const axiosCacheMemcached = require('axios-elasticache-memcached-adapter')
 
 const memcachedAdapter = axiosCacheMemcached.setup(axios.defaults.adapter, 'localhost:11211')
@@ -44,6 +46,20 @@ const http = axios.create({
 
 http.get(url, options).then(response => {
   // Cached or Uncached axios response
+})
+```
+
+or
+
+```javascript
+const axios = require('axios')
+const axiosCacheMemcached = require('axios-elasticache-memcached-adapter')
+
+const memcachedAdapter = axiosCacheMemcached.setup(axios.defaults.adapter, 'localhost:11211', 30, 'mysite.com')
+
+axios.get(url, {
+  params: theparams,
+  adapter: memcachedAdapter
 })
 ```
 
