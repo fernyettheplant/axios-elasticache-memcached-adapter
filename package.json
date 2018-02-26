@@ -1,6 +1,6 @@
 {
   "name": "axios-elasticache-memcached-adapter",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Cache adapter for axios using memcached elasticache",
   "main": "index.js",
   "keywords": [
