@@ -1,6 +1,6 @@
 {
   "name": "axios-elasticache-memcached-adapter",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Cache adapter for axios using memcached elasticache",
   "main": "index.js",
   "keywords": [
@@ -21,8 +21,10 @@
   },
   "engineStrict": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "blueimp-md5": "^2.10.0",
+    "build-url": "^1.0.10",
     "circular-json": "^0.5.1",
     "memcached-elasticache": "^1.1.1"
   },

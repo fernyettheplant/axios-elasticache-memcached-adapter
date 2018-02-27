@@ -24,7 +24,6 @@ npm install --save axios-elasticache-memcached-adapter
 
 The library setup takes four parameters
 
-- `adapter`: the default axios adapter. See usage to have more info.
 - `serverLocations`: Server Location of memcached cluster. Check [Server Locations documentation](https://github.com/3rd-Eden/memcached#server-locations) from the memcached library.
 - `ttl`: Cache Time-to-Live in seconds. Default value is 100 seconds.
 - `salt`: Salt Suffix for the memcached key. Default is empty string `''`
@@ -38,7 +37,7 @@ To use this library, you need to setup the memcached options to create the adapt
 const axios = require('axios')
 const axiosCacheMemcached = require('axios-elasticache-memcached-adapter')
 
-const memcachedAdapter = axiosCacheMemcached.setup(axios.defaults.adapter, 'localhost:11211')
+const memcachedAdapter = axiosCacheMemcached.setup('localhost:11211')
 
 const http = axios.create({
   adapter: memcahachedAdapter
@@ -55,7 +54,7 @@ or
 const axios = require('axios')
 const axiosCacheMemcached = require('axios-elasticache-memcached-adapter')
 
-const memcachedAdapter = axiosCacheMemcached.setup(axios.defaults.adapter, 'localhost:11211', 30, 'mysite.com')
+const memcachedAdapter = axiosCacheMemcached.setup('mycfgmemcached.endpoint.elasticache.aws.amazon.com', 600, 'mysalt2.com', { maxValue: 1024 * 1024 * 5 })
 
 axios.get(url, {
   params: theparams,

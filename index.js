@@ -1,8 +1,15 @@
 const Promise = require('bluebird')
 const CircularJSON = require('circular-json')
 const md5 = require('blueimp-md5')
+const buildUrl = require('build-url')
+const adapter = require('axios').defaults.adapter
 
-function setup (adapter, serverLocations, ttl = 100, salt = '', options = {}) {
+function buildKey (url, queryParams, salt = '') {
+  let fullUrl = buildUrl(url, {queryParams})
+  return md5(`${fullUrl}:${salt}`)
+}
+
+function setup (serverLocations, ttl = 100, salt = '', options = {}) {
   // Make sure that TTL is less or equal than 0
   if (ttl <= 0) {
     ttl = 100 // Set Default value
@@ -16,8 +23,8 @@ function setup (adapter, serverLocations, ttl = 100, salt = '', options = {}) {
 
   // Return Function for Axios Adapter
   return async function (req) {
-    const { url, method } = req
-    const key = md5(`${url}:${salt}`)
+    const { url, method, params } = req
+    const key = buildKey(url, params, salt)
     if (method === 'get') {
       let error = null
       let response = null
@@ -47,7 +54,7 @@ function setup (adapter, serverLocations, ttl = 100, salt = '', options = {}) {
 
 function createMemcached (serverLocations, options) {
   const Memcached = require('memcached-elasticache')
-  return Promise.promisifyAll(new Memcached(serverLocations))
+  return Promise.promisifyAll(new Memcached(serverLocations, options))
 }
 
 module.exports = { setup }
